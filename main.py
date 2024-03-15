@@ -1,115 +1,56 @@
 from lib import *
-
-arrNum =[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-
-nodoRaiz = nodo (arrNum[0])
-
-cola = []
-cola.append (nodoRaiz)
-
-def agregaNodos (nodoRaiz):
-
-    currentNodo = cola.pop()
-
-    if currentNodo.izq is None:
-        currentNodo.izq = nodo (arrNum[i])
-        return 0
-    
-    if currentNodo.der is None:
-        currentNodo.der = nodo (arrNum[i])
-        return 0
-    
-    cola.append (currentNodo.izq)
-    cola.append (currentNodo.der)
-
-    agregaNodos (currentNodo, )
-    return 0
-
-print ("-----")
-
-InOrderArr=[]
-PreOrderArr=[]
-PostOrderArr=[]
-
-nodo1 = nodo(1)
-nodo2 = nodo(2)
-nodo3 = nodo(3)
-nodo4 = nodo(4)
-nodo5 = nodo(5)
-nodo6 = nodo(6)
-nodo7 = nodo(7)
-
-linkHijo (nodo1,nodo2,nodo3)
-linkHijo (nodo2,nodo4,nodo5)
-linkHijo (nodo3,nodo6,nodo7)
+import sys
 
 
+"""dicc = {
+    'nom' : "zaira",
+    'edad' : 35,
+    'tel' : {
+        'cel' : 5,
+        'fij' : 6,
+    }
+}
 
+print(dicc['tel']['cel'])"""
 
+"""grafoTest = {
+    'A':{'B':5,'C':3},
+'B':{'A':5,'C':2,'D':4},
+'C':{'A':3,'B':2,'D':6,'E':7},
+'D':{'B':4,'C':6,'E':8},
+'E':{'C':7,'D':8},
+}"""
 
-LVR(nodo1,InOrderArr)
-print ("In order:")
-print (InOrderArr)
+grafoTest = grafo()
 
-VLR(nodo1,PreOrderArr)
-print ("Pre order:")
-print (PreOrderArr)
+grafoTest.addArista('A','B',5)
+grafoTest.addArista('A','C',3)
+grafoTest.addArista('B','A',5)
+grafoTest.addArista('B','C',2)
+grafoTest.addArista('B','D',4)
+grafoTest.addArista('C','A',3)
+grafoTest.addArista('C','B',2)
+grafoTest.addArista('C','D',6)
+grafoTest.addArista('C','E',7)
+grafoTest.addArista('D','B',4)
+grafoTest.addArista('D','C',6)
+grafoTest.addArista('D','E',8)
+grafoTest.addArista('E','C',7)
+grafoTest.addArista('E','D',8)
 
-LRV(nodo1,PostOrderArr)
-print ("Post order:")
-print (PostOrderArr)
+origenG = 'A'
+destinoG = 'E'
+path={}
+path[origenG]={'-':0}
 
+llaves = grafoTest.Aristas[origenG].keys()
+print(llaves)
+verticeAct = 'B'
 
-print("-----------------------------------------------------------------------------------------------------------------------")
-
-# Manera Harcodeada
-
-#nodoRaiz = nodo(16)
-#nodo9 = nodo(5)
-#nodo10 = nodo(7)
-#nodo11 = nodo(12)
-#nodo12 = nodo(9)
-#nodo13 = nodo(20)
-#nodo14 = nodo(18)
-#nodo15 = nodo(3)
-#nodo16 = nodo(10)
-#nodo17 = nodo(14)
+for i in llaves:
+    path[i]={origenG : grafoTest.Aristas[origenG][i]}
 
 
 
-#nodosOrdenados (nodoRaiz, nodo9)
-#nodosOrdenados (nodoRaiz, nodo10)
-#nodosOrdenados (nodoRaiz, nodo11)
-#nodosOrdenados (nodoRaiz, nodo12)
-#nodosOrdenados (nodoRaiz, nodo13)
-#nodosOrdenados (nodoRaiz, nodo14)
-#nodosOrdenados (nodoRaiz, nodo15)
-#nodosOrdenados (nodoRaiz, nodo16)
-#nodosOrdenados (nodoRaiz, nodo17)
-
-#print (nodoRaiz.getArbol())
-#print (nodo9.getArbol())
-#print (nodo10.getArbol())
-#print (nodo11.getArbol())
-#print (nodo12.getArbol())
-#print (nodo13.getArbol())
-#print (nodo14.getArbol())
-#print (nodo15.getArbol())
-#print (nodo16.getArbol())
-#print (nodo17.getArbol())
-
-
-print("-----------------------------------------------------------------------------------------------------------------------")
-# Arbol ordenado
-# Manera Dinámica
-nodoRaiz = None
-arrNodos = [16,5,7,12,9,20,18,3,10,14]
-
-
-for i in range (0, len(arrNodos), 1):
-    if i == 0:
-        nodoRaiz = nodo (arrNodos[i])
-    else:
-        nodosOrdenados (nodoRaiz, nodo(arrNodos[i]))
-
-printArbol (nodoRaiz)
+print(path)      
+print(grafoTest)

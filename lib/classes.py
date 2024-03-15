@@ -1,25 +1,25 @@
-class nodo():
-    def __init__(self, valor,):
-        self.valor = valor
-        self.izq = None
-        self.der = None
-        pass
+from .func import *
 
-    def getArbol (self):
-        strOut = " "
-        strOut += f"NodoPadre [{self.valor}]"
-        if type(self.izq) != type(None):
-            strOut += f" - Izquierda [{self.valor}]->[{self.izq}] "
-            
-        if self.der is not None:
-            strOut += f" - Derecha [{self.valor}]->[{self.der}] "
+class grafo():
+    def __init__(self) -> None:
+        self.Aristas = {}
+        pass
+    
+    def addVertice(self,vertice):
+        self.Aristas[vertice] = {}
+        pass
+    
+    def addArista(self, origen, destino,peso):
+        if origen not in self.Aristas:
+            self.addVertice(origen)
+        if destino not in self.Aristas:
+            self.addVertice(destino)
+        self.Aristas[origen].update({destino:peso})
+        """self.Aristas[origen][destino] = peso""" 
+
+        pass
+    
+    def __str__(self) -> str:
+        return printDicc(self.Aristas)
         
-        return strOut 
-    
-    def __str__(self):        
-        return f"Valor: {self.valor}"
-    
-    
-    
-    
-pass
+    pass
